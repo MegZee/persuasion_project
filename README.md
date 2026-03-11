@@ -76,7 +76,7 @@ However, I have included secure, obfuscated **sample datasets** inside the repos
 cp data/ads/unique_ads_df_sample.csv data/ads/unique_ads_df.csv
 cp data/ads/australian_ads_dataframe_sample.csv data/ads/australian_ads_dataframe.csv
 ```
-*(If you would like to run the code on the full massive datasets or test out the pre-trained `ads_model.h5`, you can download all the original data directly from **[this Google Drive folder](https://drive.google.com/drive/folders/1XDNrxlFfyRgXU2LlbmOoDqruvF_R7UnN?usp=sharing)**. Just place the downloaded `.csv` files into the `data/ads/` folder and the `.h5` model into the `models/` folder!)*
+> *(If you would like to run the code on the full datasets or test out the pre-trained `ads_model.h5`, you can download all the original data directly from **[this Google Drive folder](https://drive.google.com/drive/folders/1XDNrxlFfyRgXU2LlbmOoDqruvF_R7UnN?usp=sharing)**. Just place the downloaded `.csv` files into the `data/ads/` folder and the `.h5` model into the `models/` folder!)*
 
 ### Scripts (recommended for reproducibility)
 
