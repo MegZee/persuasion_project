@@ -1,0 +1,88 @@
+.navbar-home-button {
+    font-family: 'Lobster', Georgia, Times, serif;
+  }
+  
+  .spacer {
+    height: 62px;
+    width: 100%;
+  }
+  
+  .header {
+    background: rgba(41, 42, 45, 0.966);
+  }
+  
+  .logo {
+    font-size: 32px;
+  }
+  
+  .my-navbar-text {
+    color: azure;
+  }
+  
+  /*my-navbar*/
+  .my_navbar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 10000;
+    height: 48px;
+  }
+  
+  .navItems {
+    position: absolute;
+    right: 0px;
+    height: fit-content;
+  }
+  
+  .logo {
+    position: absolute;
+    left: 20px;
+  }
+  
+  .my-navbar li {
+    display: inline;
+    margin: 10px;
+    position: relative;
+  }
+  
+  .my-navbar a:link,
+  .my-navbar a:visited {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .my-navbar ul a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 10;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  
+  .dropdown-menu {
+    border-radius: 0px 0px 15px 15px;
+    background-color: rgba(41, 42, 45, 0.966);
+    margin-top: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .dropdown-item {
+    margin-top: -0.5vh;
+    margin-bottom: -0.5vh;
+  }
+  
+  .my-navbar a:hover:after {
+    width: 100%;
+    left: 0;
+  }
+  
+  @media (min-width: 991.98px) {
+    .my-navbar {
+      height: 62px;
+    }
+  }

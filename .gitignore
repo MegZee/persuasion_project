@@ -1,0 +1,34 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Large model files (track with Git LFS or download separately)
+models/*.h5
+models/*.keras
+models/*.pt
+
+# Outputs (generated at runtime)
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large datasets and sensitive data
+data/ads/unique_ads_df.csv
+data/ads/australian_ads_dataframe.csv
+data/ads/detailed_ads_df.csv

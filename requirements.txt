@@ -1,0 +1,22 @@
+# Persuasion Detection in Political Ads
+# Tested on: Python 3.10, CUDA 12.x, A100 40GB GPU, 80GB RAM (Colab High-RAM)
+#
+# IMPORTANT: If using TensorFlow >= 2.16 (Keras 3), you MUST also:
+#   1. pip install tf-keras
+#   2. Set  TF_USE_LEGACY_KERAS=1  before importing TensorFlow
+#      e.g.  export TF_USE_LEGACY_KERAS=1
+
+tensorflow>=2.12
+tf-keras
+transformers==4.37.2
+sentencepiece
+spacy>=3.5
+pandas
+numpy
+scikit-learn
+tqdm
+matplotlib
+seaborn
+
+# SpaCy model (install separately):
+#   python -m spacy download en_core_web_lg

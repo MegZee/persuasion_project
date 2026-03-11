@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/*
+div {
+  border: 1px solid green;
+}
+*/
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .debug {
+    border: 1px solid red;
+  }
+}
+.uq-color {
+  background-color: #51247a;
+  color: azure;
+}
+
+.nav_btn_height {
+  height: 32px;
+  min-height: 32px;
+}
+
+.rounded_corner {
+  border-radius: 5px;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+
+/* ------------------------------------------------------------------------ */
+
+
+
+:root {
+
+  --clr-primary-400: 263 55% 52%;
+  
+  --clr-secondary-400: 217 19% 35%;
+  
+  --clr-secondary-500: 219 29% 14%;
+  
+  --clr-neutral-100: 0 0% 100%;
+  
+  --clr-neutral-200: 210 46% 95%;
+  
+  --clr-neutral-300: 0 0% 81%;
+
+  --font-inconsolata: 'Inconsolata', monospace;
+
+  --font-quicksand: 'Quicksand', sans-serif;
+  
+  --ff-primary: 'Inconsolata', "Barlow Semi Condensed", sans-serif;
+  
+  --fw-400: 500;
+  
+  --fw-700: 600;
+  
+  --fs-300: 0.6875rem;
+  
+  --fs-400: 0.8125rem;
+  
+  --fs-500: 1.25rem;
+  
+  }
+
+  body {
+    margin: 0;
+    color: #fff;
+    background-color: #020617;
+    padding: 0;
+    font-family: var(--font-inconsolata);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-quicksand);
+  }
+  
+  /* Box sizing rules */
+  
+  *,
+  
+  *::before,
+  
+  *::after {
+  
+  box-sizing: border-box;
+  
+  }
+  
+  /* Remove default margin */
+  
+  body,
+  
+  h1,
+  
+  h2,
+  
+  h3,
+  
+  h4,
+  
+  p,
+  
+  figure,
+  
+  blockquote,
+  
+  dl,
+  
+  dd {
+  
+  margin: 0;
+  
+  }
+  
+  /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+  
+  ul[role="list"],
+  
+  ol[role="list"] {
+  
+  list-style: none;
+  
+  }
+
+  /* ul[role="list"] {
+    list-style: disc;
+  }
+  
+  ol[role="list"] {
+    list-style: decimal;
+  } */
+  
+  /* Set core root defaults */
+  
+  html:focus-within {
+  
+  scroll-behavior: smooth;
+  
+  }
+  
+  /* Set core body defaults */
+  
+  body {
+  
+  min-height: 100vh;
+  
+  text-rendering: optimizeSpeed;
+  
+  line-height: 1.5;
+  
+  }
+  
+  /* A elements that don't have a class get default styles */
+  
+  a:not([class]) {
+  
+  text-decoration-skip-ink: auto;
+  
+  }
+  
+  /* Make images easier to work with */
+  
+  img,
+  
+  picture {
+  
+  max-width: 100%;
+  
+  display: block;
+  
+  }
+  
+  /* Inherit fonts for inputs and buttons */
+  
+  input,
+  
+  button,
+  
+  textarea,
+  
+  select {
+  
+  font: inherit;
+  
+  }
+  
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+  
+  @media (prefers-reduced-motion: reduce) {
+  
+  html:focus-within {
+  
+  scroll-behavior: auto;
+  
+  }
+  
+  *,
+  
+  *::before,
+  
+  *::after {
+  
+  animation-duration: 0.01ms !important;
+  
+  animation-iteration-count: 1 !important;
+  
+  transition-duration: 0.01ms !important;
+  
+  scroll-behavior: auto !important;
+  
+  }
+  
+  }
+  
+  .main-content {
+
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 100vh;
+    
+    font-family: var(--ff-primary);
+    
+    font-weight: var(--fw-400);
+    
+    background-color: transparent;
+    
+    position: relative;
+
+    z-index: 1;
+  
+  }
+  
+  h1,
+  
+  h2,
+  
+  h3 {
+  
+  font-weight: var(--fw-700);
+  
+  }
+  
+  /* utilities */
+  
+  /* .flex {
+  
+  display: flex;
+  
+  gap: var(--gap, 1rem);
+  
+  } */
+  
+  .flow > *:where(:not(:first-child)) {
+  
+  margin-top: var(--flow-spacer, 1em);
+  
+  }
+  
+  .bg-primary-400 {
+  
+  background: hsl(var(--clr-primary-400));
+  
+  }
+  
+  .bg-secondary-400 {
+  
+  background: hsl(var(--clr-secondary-400));
+  
+  }
+  
+  .bg-secondary-500 {
+  
+  background: hsl(var(--clr-secondary-500));
+  
+  }
+  
+  .bg-neutral-100 {
+  
+  background: hsl(var(--clr-neutral-100));
+  
+  }
+  
+  .text-neutral-100 {
+  
+  color: hsl(var(--clr-neutral-100));
+  
+  }
+  
+  .text-secondary-400 {
+  
+  color: hsl(var(--clr-secondary-400));
+  
+  }
+  
+  .border-primary-400 {
+  
+  border: 2px solid #a775f1;
+  
+  }
+
+
+  /* ------------------------------------------------------------------------ */
+
+
+  .long-description-content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .long-description-content p {
+    margin-bottom: 1em;
+  }
+  
+  .long-description-content strong {
+    font-weight: 600;
+  }
+  
+  .long-description-content ol,
+  .long-description-content ul {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+  
+  .long-description-content li {
+    margin-bottom: 0.5em;
+  }
+  
+  .long-description-content ol {
+    list-style-type: decimal;
+  }
+  
+  .long-description-content ul {
+    list-style-type: disc;
+  }
+

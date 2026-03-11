@@ -1,0 +1,39 @@
+  {
+    "name": "facebook_ads_react",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "generate:data": "python3 scripts/generate_static_data.py || python scripts/generate_static_data.py",
+      "prebuild": "npm run generate:data",
+      "dev": "next dev",
+      "dev:remote": "sst bind next dev",
+      "deploy": "sst deploy --stage=prod",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "chart.js": "^4.4.3",
+      "daisyui": "^4.12.10",
+      "highcharts": "^11.4.8",
+      "highcharts-react-official": "^3.2.1",
+      "lucide-react": "^0.446.0",
+      "next": "14.2.5",
+      "react": "^18",
+      "react-chartjs-2": "^5.2.0",
+      "react-dom": "^18",
+      "react-icons": "^5.2.1",
+      "recharts": "^2.12.7",
+      "swr": "^2.2.5",
+      "tailwind-merge": "^2.5.2"
+    },
+    "devDependencies": {
+      "aws-cdk-lib": "2.142.1",
+      "constructs": "10.3.0",
+      "eslint": "^8",
+      "eslint-config-next": "14.2.5",
+      "postcss": "^8",
+      "sst": "^2.43.7",
+      "tailwindcss": "^3.4.1"
+    }
+  }

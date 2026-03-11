@@ -1,0 +1,54 @@
+{
+    "tfidf": {
+      "highPersuasion": [
+        "labor",
+        "vote",
+        "government",
+        "morrison",
+        "future",
+        "need",
+        "better",
+        "australia",
+        "community",
+        "plan"
+      ],
+      "lowPersuasion": [
+        "community",
+        "local",
+        "support",
+        "team",
+        "labor",
+        "time",
+        "nsw",
+        "join",
+        "service",
+        "vote"
+      ]
+    },
+    "bigrams": {
+      "highPersuasion": [
+        "morrison scott",
+        "government labor",
+        "change climate",
+        "better future",
+        "aged care",
+        "cost living",
+        "petition sign",
+        "economy strong",
+        "future stronger",
+        "government morrison"
+      ],
+      "lowPersuasion": [
+        "election federal",
+        "job vacancy",
+        "melbourne vic",
+        "government labor",
+        "strait torres",
+        "islander strait",
+        "aboriginal torres",
+        "business small",
+        "health mental",
+        "candidate labor"
+      ]
+    }
+  }
