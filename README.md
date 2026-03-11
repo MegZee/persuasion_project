@@ -66,14 +66,13 @@ python -m spacy download en_core_web_lg
 ## Usage
 
 ### 📊 Using the Data (For Reviewers/Interviewers)
-The complete Facebook ads dataset and the finalized ML model are too large (>1.5 GB total) to host directly on GitHub.
+The complete Facebook ads dataset and the finalized ML model are too large (>1.5 GB total) to host directly on GitHub or include via email attachment.
 
-However, I have included secure, obfuscated **sample datasets** inside the repository so you can run all the code and notebooks right out of the box! Before running the training or analysis scripts, simply copy the sample data to the expected file pathways:
-```bash
-cp data/ads/unique_ads_df_sample.csv data/ads/unique_ads_df.csv
-cp data/ads/australian_ads_dataframe_sample.csv data/ads/australian_ads_dataframe.csv
-```
-> *(If you would like to run the code on the full datasets or test out the pre-trained `ads_model.h5`, you can download all the original data directly from **[this Google Drive folder](https://drive.google.com/drive/folders/1XDNrxlFfyRgXU2LlbmOoDqruvF_R7UnN?usp=sharing)**. Just place the downloaded `.csv` files into the `data/ads/` folder and the `.h5` model into the `models/` folder!)*
+To run the codebase, please download all the original full datasets and the pre-trained models directly from **[this Google Drive folder](https://drive.google.com/drive/folders/1XDNrxlFfyRgXU2LlbmOoDqruvF_R7UnN?usp=sharing)**.
+
+Once downloaded:
+1. Place the `.csv` files into the `data/ads/` folder.
+2. Place the `.h5` model files into the `models/` folder.
 
 ### Scripts (recommended for reproducibility)
 
