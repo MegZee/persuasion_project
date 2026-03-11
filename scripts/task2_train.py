@@ -11,6 +11,10 @@ Usage:
 """
 
 import os, sys, argparse, json, re, ast
+
+# ── Keras 3 compatibility (must be set before importing TensorFlow) ───────
+os.environ['TF_USE_LEGACY_KERAS'] = '1'
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -22,7 +26,22 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, classification_report
 from transformers import TFXLNetModel, XLNetTokenizer
+import transformers.modeling_tf_utils as modeling_tf_utils
 from tqdm.auto import tqdm
+
+# ── Patch backend helpers for transformers + newer Keras builds ───────────
+def _compat_int_shape(x):
+    return tuple(x.shape.as_list()) if hasattr(x.shape, "as_list") else tuple(x.shape)
+
+def _compat_batch_set_value(weight_value_tuples):
+    for variable, value in weight_value_tuples:
+        variable.assign(value)
+
+if not hasattr(modeling_tf_utils.K, "int_shape"):
+    modeling_tf_utils.K.int_shape = _compat_int_shape
+
+if not hasattr(modeling_tf_utils.K, "batch_set_value"):
+    modeling_tf_utils.K.batch_set_value = _compat_batch_set_value
 
 # ── Project paths ──────────────────────────────────────────────────────────
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +64,9 @@ def asymmetric_binary_crossentropy(beta):
 # ── Custom pooling layer ──────────────────────────────────────────────────
 class MeanPooling(Layer):
     """Attention-mask-aware mean pooling over transformer hidden states."""
+    def __init__(self, **kwargs):
+        super(MeanPooling, self).__init__(**kwargs)
+
     def call(self, inputs):
         hidden, mask = inputs
         mask_f = tf.expand_dims(tf.cast(mask, tf.float32), -1)
@@ -162,8 +184,12 @@ def predict_corpus():
     print("[Task 2] Loading saved model …")
     model = load_model(MODEL_PATH, custom_objects={
         "TFXLNetModel": TFXLNetModel,
+        "MeanPooling": MeanPooling,
         "loss": asymmetric_binary_crossentropy(BETA),
-    })
+    }, compile=False)
+    model.compile(optimizer=Adam(learning_rate=1e-4),
+                  loss=asymmetric_binary_crossentropy(BETA),
+                  metrics=["accuracy"])
     tokenizer = XLNetTokenizer.from_pretrained("xlnet-base-cased")
 
     print("[Task 2] Loading unique ads …")

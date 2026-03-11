@@ -10,6 +10,10 @@ Usage:
 """
 
 import os, sys, argparse
+
+# ── Keras 3 compatibility (must be set before importing TensorFlow) ───────
+os.environ['TF_USE_LEGACY_KERAS'] = '1'
+
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -22,6 +26,21 @@ from tensorflow.keras.optimizers import Adam
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.metrics import accuracy_score, f1_score
 from transformers import XLNetTokenizer, TFXLNetModel
+import transformers.modeling_tf_utils as modeling_tf_utils
+
+# ── Patch backend helpers for transformers + newer Keras builds ───────────
+def _compat_int_shape(x):
+    return tuple(x.shape.as_list()) if hasattr(x.shape, "as_list") else tuple(x.shape)
+
+def _compat_batch_set_value(weight_value_tuples):
+    for variable, value in weight_value_tuples:
+        variable.assign(value)
+
+if not hasattr(modeling_tf_utils.K, "int_shape"):
+    modeling_tf_utils.K.int_shape = _compat_int_shape
+
+if not hasattr(modeling_tf_utils.K, "batch_set_value"):
+    modeling_tf_utils.K.batch_set_value = _compat_batch_set_value
 
 # ── Project paths (relative to repo root) ──────────────────────────────────
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -117,8 +136,16 @@ def main(args):
         s = calculate_scores(dev_labels, dev_pred, t)
         print(f"  t={t:.2f}  F1-micro={s['f1_micro']:.4f}  F1-macro={s['f1_macro']:.4f}")
 
+    # ── Save model ────────────────────────────────────────────────────────
+    model_path = os.path.join(PROJECT_ROOT, "models", "task1_model.h5")
+    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+    model.save(model_path)
+    print(f"[Task 1] Model saved to {model_path}")
+
     # ── Test predictions ───────────────────────────────────────────────────
-    test_df = test_df.reset_index(drop=False)
+    # Re-read test set to restore the 'id' column (dropped during shuffle)
+    test_df = pd.read_csv(os.path.join(DATA_DIR, "spacy_cleaned_test.csv"), index_col=0)
+    test_df.reset_index(inplace=True)
     test_enc = xlnet_tokenizer(test_df["text"].tolist(), padding="max_length",
                                truncation=True, max_length=max_len, return_tensors="tf")
     test_pred = model.predict(test_enc["input_ids"])
